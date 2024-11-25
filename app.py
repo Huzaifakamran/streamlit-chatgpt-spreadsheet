@@ -31,10 +31,8 @@ def fetch_data():
   "token_uri": st.secrets["token_uri"],
   "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
   "client_x509_cert_url":st.secrets["client_x509_cert_url"],
-  "universe_domain": st.secrets["universe_domain"]
+  "universe_domain": st.secrets["universe_domain"],
 }
-
-    creds_json = json.dumps(creds_dict)
     # Google Sheets setup
     scope = [
         "https://spreadsheets.google.com/feeds",
@@ -44,7 +42,7 @@ def fetch_data():
     ]
     # creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     # client = gspread.authorize(creds)
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
 
 
