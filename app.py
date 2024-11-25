@@ -44,7 +44,7 @@ def fetch_data():
     ]
     # creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     # client = gspread.authorize(creds)
-    creds = ServiceAccountCredentials.from_json_keyfile_name(json.loads(creds_json), scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
     client = gspread.authorize(creds)
 
 
