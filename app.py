@@ -2,7 +2,6 @@ import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from openai import OpenAI
-import json 
 
 def chatGPT(user_query, data):
     # Format data as key-value pairs
@@ -68,8 +67,10 @@ if input_id:
     for row in data[1:]:  # Skip the header row
         keys = row[0].split(",")  # Split comma-separated keys
         if input_id in keys:
-            st.session_state["stored_row"] = dict(zip(data[0], row))  # Store as a key-value dictionary
+            stored_row = dict(zip(data[0], row))  # Store as a key-value dictionary
             st.write(f"Match found! Initial response:\n\n {row[1]}")
+            stored_row.pop("First Reply", None)  # Safely remove the column if it exists
+            st.session_state["stored_row"] = stored_row
             found = True
             break
 
